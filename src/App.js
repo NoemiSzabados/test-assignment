@@ -1,24 +1,18 @@
 import './App.css';
 import TopicInformation from "./views/topicInformation";
 import WordCloud from "./views/wordCloud";
+import topicsProvider from "./data";
+import {useEffect, useState} from "react";
 
 function App() {
-    const topic =
-        {
-        "id": "1751295897__Berlin",
-        "label": "Berlin",
-        "volume": 165,
-        "type": "topic",
-        "sentiment": {
-            "negative": 3,
-            // "neutral": 133,
-            "positive": 29
-        },
-        "sentimentScore": 65,
-        "burst": 13
-        }
+    const [topic, setTopic] = useState(null);
 
-  return (
+    useEffect(() => {
+        const subscription = topicsProvider.selectedTopicStream.subscribe(setTopic);
+        return () => subscription.unsubscribe();
+    }, []);
+
+    return (
     <div className="App">
       <h1>Word Cloud</h1>
       <div className="container">
