@@ -1,4 +1,19 @@
+@import "variables";
+
 .infoWrapper {
+  //TODO: remove this line
   background: aquamarine;
   width: 500px;
+
+  > div {
+    padding: 10px 0;
+  }
+
+  .positiveMentions {
+    color: $green;
+  }
+
+  .negativeMentions {
+    color: $red;
+  }
 }
