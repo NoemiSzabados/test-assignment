@@ -15,10 +15,21 @@ export default function WordCloud() {
         topicsProvider.selectedTopicStream.next(topic);
     }
 
+    const getColor = function(topic) {
+        if (topic.sentimentScore > 60) {
+            return "greenText";
+        } else if (topic.sentimentScore < 40) {
+            return "redText";
+        }
+    }
+
     return (
         <div className="wordCloudWrapper">
             {
-                topics && topics.length>0 && topics.map((topic)=><p key={topic.id} onClick={()=>selectTopic(topic)}>{topic.label}</p>)
+                topics && topics.length>0 &&
+                topics.map((topic)=>
+                    <span key={topic.id} className={getColor(topic)} onClick={()=>selectTopic(topic)}> {topic.label}</span>
+                )
             }
         </div>
     );

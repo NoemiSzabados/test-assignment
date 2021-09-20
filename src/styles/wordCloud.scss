@@ -1,3 +1,17 @@
+@import "variables";
+
 .wordCloudWrapper {
   width: 100%;
+
+  span {
+    padding: 15px;
+  }
+
+  .redText {
+    color: $red;
+  }
+
+  .greenText {
+    color: $green;
+  }
 }
