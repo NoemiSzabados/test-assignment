@@ -2,9 +2,11 @@
 
 .wordCloudWrapper {
   width: 100%;
+  padding: 20px;
 
   span {
     padding: 15px;
+    color: $grey;
   }
 
   .redText {
@@ -13,5 +15,32 @@
 
   .greenText {
     color: $green;
+  }
+
+  .fontSize {
+    &-1 {
+      font-size: 40px;
+    }
+
+    &-2 {
+      font-size: 30px;
+    }
+
+    &-3 {
+      font-size: 25px;
+    }
+
+    &-4 {
+      font-size: 20px;
+    }
+
+    &-5 {
+      font-size: 15px;
+    }
+
+    &-6 {
+      font-size: 10px;
+    }
+
   }
 }
