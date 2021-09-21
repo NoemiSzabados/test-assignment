@@ -54,12 +54,15 @@ export default function WordCloud() {
 
     return (
         <div className="wordCloudWrapper">
+            <div className="wordCloudContainer">
             {
                 topics && topics.length>0 &&
                 topics.map((topic)=>
                     <span key={topic.id} className={getColor(topic) + getSize(topic)} onClick={()=>selectTopic(topic)}> {topic.label} </span>
                 )
             }
+            </div>
+
         </div>
     );
 }

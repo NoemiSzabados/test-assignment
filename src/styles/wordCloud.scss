@@ -4,10 +4,15 @@
   width: 100%;
   padding: 20px;
 
+  .wordCloudContainer {
+    margin: auto;
+    max-width: 1000px;
+  }
+
   span {
-    padding: 15px;
+    padding: 2px;
     color: $grey;
-    display: inline-flex;
+    display: inline-block;
   }
 
   .redText {
