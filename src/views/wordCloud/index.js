@@ -1,7 +1,7 @@
 import "../../styles/wordCloud.scss";
-import {useEffect, useState} from 'react';
+import {useEffect, useState, useCallback} from 'react';
 import topicsProvider from '../../data';
-
+import WordCloud from 'react-d3-cloud';
 
 const getSizeGroups = function(topics) {
     let sizeGroups = {};
@@ -23,13 +23,21 @@ const getSizeGroups = function(topics) {
     return sizeGroups;
 }
 
-export default function WordCloud() {
+const addTextAndValuePoperty = function(topics) {
+    topics.forEach((topic)=> {
+        topic['text'] = topic['label'];
+        topic['value'] = topic['volume']
+    })
+    return topics;
+}
+
+export default function WordCloudContainer() {
     const [topics, setTopics] = useState(null);
     const [sizeGroups, setSizeGroups] = useState({});
 
     useEffect(() => {
         const subscription = topicsProvider.topicsStream.subscribe((result) => {
-            setTopics(result);
+            setTopics(addTextAndValuePoperty(result));
             setSizeGroups(getSizeGroups(result));
         });
         return () => subscription.unsubscribe();
@@ -39,27 +47,30 @@ export default function WordCloud() {
         topicsProvider.selectedTopicStream.next(topic);
     }
 
-    const getColor = function(topic) {
+    const getColor = useCallback((topic) => {
         if (topic.sentimentScore > 60) {
-            return "greenText ";
+            return "darkseagreen";
         } else if (topic.sentimentScore < 40) {
-            return "redText ";
+            return "indianred";
         }
-        return "";
-    }
-
-    const getSize = function(topic) {
-        return "fontSize-" + sizeGroups[topic.volume];
-    }
+        return "dimgrey";
+    }, []);
 
     return (
         <div className="wordCloudWrapper">
             <div className="wordCloudContainer">
             {
                 topics && topics.length>0 &&
-                topics.map((topic)=>
-                    <span key={topic.id} className={getColor(topic) + getSize(topic)} onClick={()=>selectTopic(topic)}> {topic.label} </span>
-                )
+                <WordCloud
+                    data={topics}
+                    fontSize={(topic) => {
+                        return (7 - sizeGroups[topic.volume] ) *10 ;
+                    }}
+                    padding={5}
+                    rotate = {0}
+                    fill= {getColor}
+                    onWordClick={(pointer, word) => selectTopic(word)}
+                />
             }
             </div>
 

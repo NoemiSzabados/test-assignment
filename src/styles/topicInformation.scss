@@ -3,9 +3,13 @@
 .infoWrapper {
   width: 500px;
   text-align: left;
-  padding: 10px;
+  padding: 75px 10px;
 
-  > div {
+  &.hidden {
+    display: none;
+  }
+
+  .infoContainer > div {
     padding: 10px 0;
   }
 
