@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Topic Information snapshot test 1`] = `
+<div
+  className="infoWrapper hidden"
+/>
+`;
+
+exports[`Topic Information topic information is visible when topic is not null 1`] = `
+<div
+  className="infoWrapper hidden"
+/>
+`;
+
+exports[`Topic Information topic information is visible when topic is not null 2`] = `
+<div
+  className="infoWrapper"
+>
+  <div
+    className="infoContainer"
+  >
+    <div>
+      Information on topic "
+      Berlin
+      "
+    </div>
+    <div>
+      Total mentions: 
+      165
+    </div>
+    <div>
+      <div>
+        Positive mentions: 
+        <span
+          className="positiveMentions"
+        >
+          29
+        </span>
+      </div>
+      <div>
+        Neutral mentions: 
+        133
+      </div>
+      <div>
+        Negative mentions: 
+        <span
+          className="negativeMentions"
+        >
+          3
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+`;
